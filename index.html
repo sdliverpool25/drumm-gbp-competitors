@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/drumreach-icon.png">
+<meta name="theme-color" content="#054672">
+<title>You vs your top 3 on Google Maps · Drumm Carpentry, Kitchens &amp; Wardrobes</title>
+<style>
+:root{--ink:#151515;--muted:#6b6866;--brand:#054672;--brand2:#1c74bc;--gold:#cdb083;--tint:#eaf2f9;--bg:#f6f3f0;--card:#fff;--line:#ece7e3;--ok:#1d7a45;--okbg:#e2f3e8;--bad:#B92533;--badbg:#fbe4e6;--warn:#9a5b00;--warnbg:#fcefd9;--info:#3d3a38;--infobg:#efebe8;--far:#e2701f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;font-size:16px}
+a{color:var(--brand)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+header.top{background:var(--brand);color:#fff;padding:28px 0 22px}
+header.top .kicker{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;opacity:.85;font-weight:600}
+header.top h1{margin:.2em 0 .3em;font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.2}
+header.top .meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.92rem;opacity:.95}
+nav.jump{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
+nav.jump .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:6px;padding-bottom:6px}
+nav.jump a{white-space:nowrap;text-decoration:none;color:var(--brand);font-size:.88rem;padding:6px 10px;border-radius:20px}
+nav.jump a:hover{background:var(--bg)}
+section{padding:26px 0 6px}
+h2{color:var(--brand);font-size:1.3rem;margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.summary{display:grid;grid-template-columns:1fr 260px;gap:18px;align-items:start}
+.summary p{margin:0 0 10px}
+.shot img{width:100%;border-radius:10px;border:1px solid var(--line);display:block}
+.shot figcaption{font-size:.8rem;color:var(--muted);margin-top:6px}
+.shot{margin:0}
+.scores{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.score{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;text-align:left}
+.score .v{font-size:1.9rem;font-weight:700;color:var(--brand);line-height:1.1}
+.score .l{font-size:.85rem;color:var(--muted)}
+.score .s{font-size:.78rem;color:var(--muted);margin-top:6px}
+.score.alert .v{color:var(--bad)}
+.stars{display:grid;grid-template-columns:42px 1fr 40px;gap:8px 10px;align-items:center;max-width:560px}
+.bar{background:#ece7e3;border-radius:6px;height:14px;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--brand2);border-radius:6px;transition:width .4s ease}
+#stars .bar span{animation:grow .9s ease both}@keyframes grow{from{width:0}}
+.stars .n{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+ul.good{margin:0;padding-left:20px}
+ul.good li{margin-bottom:6px}
+.filters{display:flex;gap:6px;margin:0 0 10px;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);background:#fff;padding:6px 14px;border-radius:20px;font:inherit;font-size:.88rem;cursor:pointer;color:var(--brand)}
+.filters button[aria-pressed=true]{background:var(--brand);color:#fff;border-color:var(--brand)}
+.filters .count{font-size:.85rem;color:var(--muted);align-self:center;margin-left:6px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.9rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--tint);color:var(--brand);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em}
+tr:last-child td{border-bottom:0}
+td .src{display:block;font-size:.78rem;color:var(--muted);word-break:break-all}
+.tag{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 9px;border-radius:12px;white-space:nowrap}
+.t-ok{background:var(--okbg);color:var(--ok)}.t-bad{background:var(--badbg);color:var(--bad)}.t-warn{background:var(--warnbg);color:var(--warn)}.t-info{background:var(--infobg);color:var(--info)}
+.group{font-weight:600;color:var(--brand);background:#f3f7fb}
+h3.sub{font-size:1.02rem;color:var(--brand);margin:20px 0 8px}
+.progress{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.progress .bar{flex:1;min-width:160px;height:10px}
+.progress .txt{font-size:.9rem;color:var(--muted)}
+details.fix{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+details.fix summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:center}
+details.fix summary::-webkit-details-marker{display:none}
+details.fix .num{flex:none;background:var(--brand2);color:#fff;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:.85rem;font-weight:700}
+details.fix .ttl{flex:1;font-weight:600}
+details.fix .new{font-size:.7rem;font-weight:700;color:var(--brand);background:var(--tint);border-radius:10px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+details.fix .chev{transition:transform .2s;color:var(--muted)}
+details.fix[open] .chev{transform:rotate(90deg)}
+details.fix .body{padding:0 16px 14px 56px}
+details.fix dl{margin:0;display:grid;grid-template-columns:130px 1fr;gap:6px 14px}
+details.fix dt{font-weight:600;color:var(--brand);font-size:.9rem}
+details.fix dd{margin:0}
+details.fix.done .ttl{text-decoration:line-through;color:var(--muted)}
+.tick{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted);flex:none}
+.tick input{width:20px;height:20px;accent-color:var(--brand2);cursor:pointer}
+.effort{font-size:.74rem;font-weight:600;padding:2px 9px;border-radius:12px;white-space:nowrap;flex:none}
+.e-quick{background:var(--okbg);color:var(--ok)}.e-medium{background:var(--warnbg);color:var(--warn)}
+.note{font-size:.9rem;color:var(--muted)}
+.cta{background:var(--brand);color:#fff;border-radius:14px;padding:24px 24px 22px;border-top:5px solid var(--gold)}
+.cta a{color:#fff}
+.cta h2{color:#fff}
+.cta p{margin:0 0 10px}
+.pos{display:inline-block;min-width:2.8em;text-align:center;font-weight:700;font-size:.85rem;padding:3px 10px;border-radius:14px;white-space:nowrap}
+.p-top{background:var(--okbg);color:var(--ok)}.p-mid{background:var(--warnbg);color:var(--warn)}.p-out{background:var(--badbg);color:var(--bad)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.84rem;color:var(--muted);margin:0 0 12px;align-items:center}
+ol.top3{margin:0;padding-left:18px}ol.top3 li{margin:0 0 2px}
+.you{font-weight:700;color:var(--brand)}
+.rate{color:var(--muted);font-size:.84rem;white-space:nowrap}
+.callout{background:#fff;border:1px solid var(--line);border-left:5px solid var(--brand2);border-radius:12px;padding:16px 18px;margin-top:20px}
+.callout h3{margin:0 0 8px;color:var(--brand);font-size:1.05rem}
+.callout p{margin:0 0 10px}.callout p:last-child{margin-bottom:0}
+footer{padding:26px 0 40px;font-size:.82rem;color:var(--muted)}
+@media (max-width:860px){.scores{grid-template-columns:repeat(2,1fr)}.summary{grid-template-columns:1fr}.shot{max-width:300px}}
+@media (max-width:640px){
+ table,thead,tbody,tr,td{display:block;width:100%}
+ thead{display:none}
+ table{border:0;background:none}
+ tr{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;padding:6px 4px}
+ tr.grouprow{background:none;border:0;padding:0;margin:14px 0 4px}
+ td{border:0;padding:4px 10px}
+ td[data-l]::before{content:attr(data-l);display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+ details.fix .body{padding:0 14px 14px}
+ details.fix dl{grid-template-columns:1fr}
+ details.fix summary{flex-wrap:wrap}
+ .tick span{display:none}
+ #napTable td[data-l=Where]{display:none}
+ td{padding:3px 10px}
+}
+@media (max-width:860px){.scores .score:last-child{grid-column:span 2}}
+@media print{nav.jump,.filters,.tick{display:none}details.fix .body{display:block}body{background:#fff}}
+/* ---- Drumreach hero ---- */
+:root{--dr-red:#1c74bc;--dr-navy:#054672;--dr-ink:#151515;--dr-off:#f6f3f0;--dr-mut:#6b6866;--dr-line:#ece7e3;--s-ok:#1d7a45;--s-okbg:#e2f3e8;--s-warn:#9a5b00;--s-warnbg:#fcefd9;--s-bad:#B92533;--s-badbg:#fbe4e6}
+.hero{background:radial-gradient(1200px 520px at 50% -10%,#fff 0%,#f4f7fa 50%,#ebf1f7 100%);border-bottom:1px solid #dfe8f1;color:var(--dr-ink);padding:56px 0 48px;overflow:hidden}
+.hero .hw{max-width:1080px;margin:0 auto;padding:0 18px}
+.hero h1{margin:0;text-align:center;font-weight:800;color:var(--dr-navy);letter-spacing:-.045em;line-height:1.02;font-size:clamp(2.3rem,6.3vw,4.5rem)}
+.hfor{display:flex;flex-direction:column;align-items:center;gap:10px;margin:0 auto 26px;text-align:center}
+.hfor .k{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#4d6b85}
+.hfor img{display:block;width:min(260px,62vw);height:auto}
+.hero .sub{text-align:center;color:#4f5d6a;font-size:clamp(1rem,2.2vw,1.3rem);margin:22px auto 38px;max-width:46em;letter-spacing:-.01em}
+.hwin{background:#fff;border:1px solid var(--dr-line);border-radius:22px;box-shadow:0 1px 2px rgba(5,70,114,.05),0 18px 50px -18px rgba(5,70,114,.25);overflow:hidden;border-top:4px solid var(--dr-red)}
+.hwin-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--dr-line)}
+.hwin-dots{display:flex;gap:7px}.hwin-dots i{width:11px;height:11px;border-radius:50%;background:#e4dfdb;display:block}
+.hwin-title{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--dr-navy);font-size:.98rem;white-space:nowrap}
+.hpill{display:inline-block;font-size:.76rem;font-weight:600;padding:3px 10px;border-radius:999px;background:#eaf2f9;color:#054672;white-space:nowrap;line-height:1.5}
+.hwin-logo{justify-self:end;display:flex;align-items:center}
+.hwin-logo img{width:76px;height:auto;display:block}
+.hwin-body{padding:22px 22px 24px}
+.hdone{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;font-size:.95rem;margin:0 0 14px}
+.hdone b{font-weight:700;color:var(--dr-navy)}
+.hdot{display:inline-flex;align-items:center;gap:6px;color:var(--dr-mut)}
+.hdot::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.9}
+.hdot.c{color:var(--s-bad)}.hdot.r{color:var(--s-warn)}.hdot.h{color:var(--s-ok)}
+.hdot span{color:var(--dr-mut)}
+.hgrid{display:grid;grid-template-columns:minmax(0,1fr) 352px;gap:22px;align-items:start}
+.hchecks{list-style:none;margin:0;padding:0}
+.hchecks li{border-bottom:1px solid var(--dr-line)}.hchecks li:last-child{border-bottom:0}
+.hchecks a{display:grid;grid-template-columns:26px minmax(0,1fr) auto;align-items:center;gap:12px;padding:11px 10px;margin:0 -10px;border-radius:12px;color:var(--dr-ink);text-decoration:none;transition:background .15s}
+.hchecks a:hover,.hchecks a:focus-visible{background:#f3f7fb;outline:none}
+.hchecks a:focus-visible{box-shadow:0 0 0 2px var(--dr-red)}
+.hchecks .nm{font-weight:500;font-size:1.02rem;letter-spacing:-.01em}
+.hic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.85rem;line-height:1}
+.hic.h{background:var(--s-okbg);color:var(--s-ok)}.hic.r{background:var(--s-warnbg);color:var(--s-warn)}.hic.c{background:var(--s-badbg);color:var(--s-bad)}
+.hic svg{width:14px;height:14px}
+.hfind{justify-self:end;text-align:right;font-size:.8rem;font-weight:600;padding:4px 10px;border-radius:8px;max-width:270px;line-height:1.35}
+.hfind.h{background:var(--s-okbg);color:var(--s-ok)}.hfind.r{background:var(--s-warnbg);color:var(--s-warn)}.hfind.c{background:var(--s-badbg);color:var(--s-bad)}
+.hside{display:grid;gap:14px}
+.hpanel{background:#f5f8fb;border:1px solid #e1eaf3;border-radius:18px;padding:16px 18px}
+.hpanel-h{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.92rem;color:var(--dr-navy);font-weight:600;margin-bottom:10px}
+.hpanel-h .hpill{background:#fff;border:1px solid #d6e4f0}
+.hring{display:flex;align-items:center;gap:16px}
+.hring svg{width:92px;height:92px;flex:none}
+.hring .big{font-size:1.45rem;font-weight:700;color:var(--dr-navy);letter-spacing:-.02em;line-height:1.15}
+.hring .sm{font-size:.86rem;color:var(--dr-mut);margin-top:4px}
+.hinfo{margin-top:10px;font-size:.8rem}
+.hinfo button{font:inherit;font-size:.8rem;background:none;border:0;padding:0;color:var(--dr-navy);text-decoration:underline dotted;text-underline-offset:3px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.hinfo button::before{content:"i";display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;border:1.5px solid currentColor;font-size:.62rem;font-weight:800;font-style:italic;text-decoration:none}
+.hinfo p{margin:8px 0 0;background:#fff;border:1px solid #d6e4f0;border-radius:10px;padding:9px 11px;color:#4a4644;line-height:1.45}
+.hnum{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.hnum .big{font-size:2.6rem;font-weight:800;color:var(--dr-navy);letter-spacing:-.04em;line-height:1}
+.hnum .lbl{font-size:.88rem;color:var(--dr-mut);line-height:1.35;flex:1;min-width:150px}
+.hseg{display:flex;gap:3px;margin:14px 0 10px}
+.hseg i{flex:1;height:12px;border-radius:3px;display:block}
+.hseg i:first-child{border-radius:7px 3px 3px 7px}.hseg i:last-child{border-radius:3px 7px 7px 3px}
+.hseg .g{background:var(--s-ok)}.hseg .x{background:var(--s-bad)}
+.hleg{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:.8rem;color:var(--dr-mut);line-height:1.3}
+.hleg b{color:var(--dr-ink);font-weight:600;display:block}.hleg>span>span{display:block}
+.hleg>span{display:flex;gap:7px}.hleg>span::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;margin-top:4px;background:var(--c)}
+.hacts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.hacts a{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--dr-line);border-radius:12px;padding:9px 12px;color:var(--dr-ink);text-decoration:none;font-size:.9rem;font-weight:500;transition:border-color .15s,box-shadow .15s}
+.hacts a:hover,.hacts a:focus-visible{border-color:#9cc3e4;box-shadow:0 4px 14px -6px rgba(28,116,188,.4);outline:none}
+.hacts .n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--dr-navy);color:#fff;display:grid;place-items:center;font-size:.78rem;font-weight:700}
+.hacts .t{flex:1}
+.hacts .cv{color:var(--dr-red);font-size:1.25rem;line-height:1}
+.hfade{animation:hfade .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,0)*90ms)}
+@keyframes hfade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.hfade{animation:none}html{scroll-behavior:auto}}
+section,details.fix{scroll-margin-top:64px}
+@media (max-width:860px){.hgrid{grid-template-columns:1fr}.hside{grid-template-columns:1fr}}
+@media (max-width:560px){
+ .hero{padding:36px 0 32px}.hero .sub{margin:16px auto 26px}
+ .hwin{border-radius:18px}
+ .hwin-bar{grid-template-columns:auto 1fr auto;padding:12px 14px}
+ .hwin-title{justify-content:center;flex-wrap:wrap;gap:4px 8px;white-space:normal;font-size:.92rem}
+ .hwin-body{padding:16px 14px 18px}
+ .hchecks a{grid-template-columns:24px minmax(0,1fr);gap:4px 10px;padding:10px 8px;margin:0 -8px}
+ .hchecks .hfind{grid-column:2;justify-self:start;text-align:left;max-width:none}
+ .hic{width:24px;height:24px}
+}
+@media print{.hfade{animation:none}.hero{padding:20px 0}}
+/* ---- Drumreach rebrand: sections below the hero ---- */
+#momentum,#rankmap{scroll-margin-top:64px}
+main section>h2{border-left:4px solid var(--brand2);padding-left:10px}
+.cta h2{border-left:0;padding-left:0}
+#stars .bar span{background:var(--brand2)}
+.bar{background:#e3ebf3}
+nav.jump a:hover{background:var(--tint);color:var(--brand)}
+.hinv{font-weight:500;color:var(--dr-mut);font-size:.84rem;letter-spacing:-.01em;margin:8px 0 0;line-height:1.4}
+.hseg.h28{gap:2px}
+.hseg .a{background:#e0a21a}.hseg .o{background:var(--far)}
+.hmore{display:inline-block;margin-top:10px;font-size:.84rem;font-weight:600;color:var(--dr-navy);text-decoration:none}
+.hmore:hover,.hmore:focus-visible{text-decoration:underline}
+/* rankings map */
+.rgwrap{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:18px;align-items:start}
+.rb{display:inline-block;font:inherit;font-weight:700;font-size:.84rem;border:0;border-radius:14px;padding:5px 0;width:100%;max-width:62px;cursor:pointer;line-height:1.3;font-variant-numeric:tabular-nums}
+.rb.g{background:#1d7a45;color:#fff}.rb.a{background:#f2b632;color:#151515}.rb.o{background:var(--far);color:#151515}.rb.r{background:#B92533;color:#fff}
+span.rb{cursor:default;width:auto;padding:3px 10px;max-width:none}
+button.rb:hover{filter:brightness(1.08)}
+button.rb:focus-visible,button.rb[aria-pressed=true]{outline:3px solid #054672;outline-offset:2px}
+table.rgrid{table-layout:fixed}
+table.rgrid th,table.rgrid td{text-align:center;padding:8px 4px;vertical-align:middle}
+table.rgrid th{text-transform:none;letter-spacing:0;font-size:.78rem;line-height:1.25}
+table.rgrid th:first-child,table.rgrid td:first-child{text-align:left;width:28%;padding-left:12px}
+table.rgrid td:first-child{font-weight:600}
+.rdetail{margin-top:12px}
+.rdetail h4{margin:0 0 6px;font-size:1rem;color:var(--brand)}
+.rdetail p{margin:6px 0 0}
+.rmapc{padding:12px}
+.rmapc .filters{margin-bottom:6px}
+.rmapc .filters button{padding:5px 11px;font-size:.82rem}
+#rankMap{width:100%;height:auto;display:block}
+#rankMap .town{cursor:pointer}
+#rankMap .town:focus{outline:none}
+#rankMap .town:focus-visible circle,#rankMap .town.sel circle{stroke:#054672;stroke-width:4}
+ul.rnotes{margin:12px 0 0;padding-left:20px;font-size:.9rem;color:var(--muted)}
+ul.rnotes li{margin-bottom:4px}
+/* review momentum */
+.mom{margin-top:14px}
+.mstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:4px 0 12px}
+.mstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mstat .v{font-size:1.5rem;font-weight:800;color:var(--brand);letter-spacing:-.02em;line-height:1.15}
+.mstat .l{font-size:.82rem;color:var(--muted);line-height:1.35}
+.mom p{margin:0 0 8px}.mom p:last-child{margin-bottom:0}
+@media (max-width:860px){.rgwrap{grid-template-columns:1fr}.rmapc{max-width:520px}.mstats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+ table.rgrid{display:table;width:100%;border:1px solid var(--line);background:#fff;border-radius:12px}
+ table.rgrid thead{display:table-header-group}
+ table.rgrid tbody{display:table-row-group}
+ table.rgrid tr{display:table-row;background:none;border:0;border-radius:0;margin:0;padding:0}
+ table.rgrid th,table.rgrid td{display:table-cell;width:auto;padding:7px 2px;border-bottom:1px solid var(--line)}
+ table.rgrid tr:last-child td{border-bottom:0}
+ table.rgrid th:first-child,table.rgrid td:first-child{width:27%;padding-left:8px}
+ table.rgrid th{font-size:.7rem}
+ table.rgrid td:first-child{font-size:.84rem}
+ .rb{font-size:.78rem;max-width:54px}
+}
+/* Drumm brand + Drumreach credit */
+.cta h2{font-size:1.5rem;margin-bottom:10px}
+.cta a{color:#fff;text-decoration-color:var(--gold);text-underline-offset:3px}
+.cta .contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.cta .contact a{display:inline-block;text-decoration:none;font-weight:600;padding:9px 16px;border-radius:999px;border:1.5px solid var(--gold);color:#fff}
+.cta .contact a.p{background:#fff;color:var(--brand);border-color:#fff}
+.cta .contact a:hover,.cta .contact a:focus-visible{background:var(--gold);color:#05263d;border-color:var(--gold);outline:none}
+.credit{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem}
+.credit img{width:18px;height:18px;border-radius:4px;display:block;opacity:.85}
+.credit a{color:var(--muted)}
+/* ---- v2: competitor comparison ---- */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.na{color:#8a8582;font-size:.8rem;font-style:italic;line-height:1.3;display:inline-block}
+.hsum{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem;margin:0 0 14px;color:var(--dr-mut)}
+.hsum b{color:var(--dr-navy)}
+.hsum .k{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--c);flex:none;margin-right:6px;vertical-align:baseline}
+.ctwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px}
+table.ctab{border:0;border-radius:0;min-width:720px;font-size:.88rem;table-layout:fixed}
+table.ctab th,table.ctab td{padding:8px 10px;vertical-align:middle}
+table.ctab thead th{text-transform:none;letter-spacing:0;font-size:.86rem;background:#fff;color:var(--brand);border-bottom:2px solid var(--line);vertical-align:bottom;line-height:1.25}
+table.ctab thead th:first-child{width:24%}
+table.ctab thead th.me{background:#eaf2f9;border-bottom-color:var(--brand2)}
+table.ctab .tw{display:block;font-weight:500;color:var(--muted);font-size:.76rem;margin-top:2px}
+table.ctab tbody th{font-weight:600;color:#3d3a38;background:#fff;text-transform:none;letter-spacing:0;font-size:.85rem}
+table.ctab tr.cg th{background:#f3f7fb;color:var(--brand);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;padding:7px 10px}
+table.ctab td.me{background:#f2f7fc;font-weight:600;color:var(--brand)}
+table.ctab td.best{box-shadow:inset 0 0 0 2px #1d7a45;border-radius:6px}
+.bdg{display:inline-block;margin-left:6px;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--okbg);color:var(--ok);border-radius:8px;padding:1px 6px;vertical-align:middle}
+table.ctab th:first-child{position:sticky;left:0;z-index:1}
+.ctnote{font-size:.8rem;color:var(--muted);margin:10px 2px 0}
+.swipe{display:none;font-size:.8rem;color:var(--brand2);font-weight:600;margin:0 0 8px}
+@media (max-width:760px){.swipe{display:block}}
+/* who shows where */
+.gwrap{overflow-x:auto}
+table.wgrid{table-layout:fixed}
+table.wgrid th,table.wgrid td{text-align:center;vertical-align:middle;padding:8px 5px}
+table.wgrid thead th{text-transform:none;letter-spacing:0;font-size:.8rem}
+table.wgrid th:first-child{text-align:left;width:19%;padding-left:12px}
+table.wgrid tbody th{background:#fff;color:var(--ink);text-transform:none;letter-spacing:0;font-size:.9rem}
+.gc .lead{display:block;font-weight:700;font-size:.8rem;border-radius:10px;padding:5px 4px;line-height:1.2}
+.gc .lead.none{background:#efebe8;color:#6b6866;font-weight:600}
+.gc .you{display:block;font-size:.74rem;color:var(--muted);margin-top:4px;line-height:1.2}
+.gc .you.ok{color:var(--ok);font-weight:600}
+.glegend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.84rem;color:var(--muted);margin:0 0 10px}
+.glegend span{display:inline-flex;align-items:center}
+details.more{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+details.more summary{cursor:pointer;font-weight:600;color:var(--brand)}
+details.more table{margin-top:10px;font-size:.84rem}
+/* beat lists */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.two .card h3{margin:0 0 10px;font-size:1.05rem;color:var(--brand)}
+.two .card.them{border-top:4px solid #cdb083}.two .card.us{border-top:4px solid #1c74bc}
+.two ul{margin:0;padding-left:20px}.two li{margin:0 0 9px}
+.two li b{color:var(--brand)}
+ol.copy{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:c}
+ol.copy li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 56px;position:relative;counter-increment:c}
+ol.copy li::before{content:counter(c);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--brand2);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.85rem}
+ol.copy h3{margin:0 0 4px;font-size:1rem;color:var(--brand)}
+ol.copy p{margin:0 0 4px}
+ol.copy .ev{font-size:.86rem;color:var(--muted)}
+/* demand */
+.proxy{background:#fff8ea;border:1px solid #f0dfb8;border-radius:12px;padding:12px 14px;margin:0 0 14px;font-size:.95rem}
+.dgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.dbar{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.dbh{font-weight:600;color:var(--brand);font-size:.92rem;margin-bottom:10px}
+.dr{display:grid;grid-template-columns:88px minmax(0,1fr) 42px;gap:8px;align-items:center;margin-bottom:7px;font-size:.85rem}
+.dr .dn{color:#3d3a38}.dr .dv{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:var(--brand)}
+.dr .bar{height:12px}
+.vel{margin-top:14px}
+.empty{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+.empty>div{border:2px dashed #c9d8e6;border-radius:12px;padding:14px;background:#fbfdff}
+.empty .v{font-size:1.6rem;font-weight:800;color:#b7c6d4;line-height:1.1}
+.empty .l{font-size:.85rem;color:var(--muted)}
+.rgn{border-left:5px solid var(--gold)}
+ul.plain{margin:0;padding-left:20px}ul.plain li{margin-bottom:6px}
+table.soc td a{word-break:break-all}
+table.lb tr.pick td{background:#f3f7fb}
+table.lb tr.meb td{color:var(--muted);font-style:italic}
+@media (max-width:860px){.two{grid-template-columns:1fr}.dgrid{grid-template-columns:1fr}}
+@media (max-width:640px){
+ table.ctab{display:table;min-width:640px;border:0;background:#fff}
+ table.ctab thead{display:table-header-group}table.ctab tbody{display:table-row-group}
+ table.ctab tr{display:table-row;background:none;border:0;border-radius:0;margin:0;padding:0}
+ table.ctab th,table.ctab td{display:table-cell;width:auto;padding:7px 8px;border-bottom:1px solid var(--line)}
+ table.ctab thead th:first-child{width:130px}
+ table.wgrid{display:table;width:100%;border:1px solid var(--line);background:#fff;border-radius:12px}
+ table.wgrid thead{display:table-header-group}table.wgrid tbody{display:table-row-group}
+ table.wgrid tr{display:table-row;background:none;border:0;border-radius:0;margin:0;padding:0}
+ table.wgrid th,table.wgrid td{display:table-cell;width:auto;padding:6px 2px;border-bottom:1px solid var(--line)}
+ table.wgrid th:first-child{width:21%;padding-left:6px;font-size:.78rem}
+ table.wgrid thead th{font-size:.68rem}
+ .gc .lead{font-size:.68rem;padding:4px 2px;border-radius:7px}
+ .gc .you{font-size:.64rem}
+ .empty{grid-template-columns:1fr}
+ ol.copy li{padding-left:50px}
+}
+</style>
+</head>
+<body>
+<header class="hero" id="top"><div class="hw">
+ <div class="hfor hfade" style="--d:0"><span class="k">Prepared for</span><img src="assets/drumm-logo.svg" alt="Drumm Carpentry, Kitchens &amp; Wardrobes" width="537" height="243"></div>
+ <h1 class="hfade" style="--d:0">You vs your top 3 on Google Maps.</h1>
+ <p class="sub hfade" style="--d:1">28 Google Maps searches from 7 towns, the 3 local businesses that showed up most, and how your listing, website and visibility compare. Checked 10 Oct 2026.</p>
+ <div class="hwin hfade" style="--d:2">
+  <div class="hwin-bar">
+   <div class="hwin-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+   <div class="hwin-title">Head to head <span class="hpill">Checked 10 Oct 2026</span></div>
+   <div class="hwin-logo"><img src="assets/drumm-logo.svg" alt="" width="537" height="243"></div>
+  </div>
+  <div class="hwin-body">
+   <p class="hsum"><span><b>Who leads the four, by search:</b></span><span class="k"><span class="sw" style="--c:#054672"></span>You <b>10</b></span><span class="k"><span class="sw" style="--c:#cdb083"></span>Woodcraft <b>4</b></span><span class="k"><span class="sw" style="--c:#2f7d6d"></span>Sliding Door <b>4</b></span><span class="k"><span class="sw" style="--c:#8a4f7d"></span>Crafted <b>2</b></span><span class="k"><span class="sw" style="--c:#d8d2cd"></span>None of the 4 <b>8</b></span></p>
+   <p class="swipe" aria-hidden="true">Swipe the table sideways to see all three competitors →</p>
+   <div class="ctwrap"><table class="ctab"><thead><tr><th scope="col"><span class="sr">Measure</span></th><th scope="col" class="me"><span class="sw" style="--c:#054672"></span>Drumm (you)<span class="tw">The Spa, Mallow</span></th><th scope="col" class=""><span class="sw" style="--c:#cdb083"></span>Woodcraft Kitchens<span class="tw">Ballyclough, Mallow</span></th><th scope="col" class=""><span class="sw" style="--c:#2f7d6d"></span>Sliding Door Wardrobes<span class="tw">Togher, Cork</span></th><th scope="col" class=""><span class="sw" style="--c:#8a4f7d"></span>Crafted Fitted Furniture<span class="tw">Bridge St, Mallow</span></th></tr></thead><tbody><tr class="cg"><th scope="rowgroup" colspan="5">Google listing</th></tr><tr><th scope="row">Rating</th><td class="me best">4.9<span class="bdg" aria-label="best in row">Best</span></td><td class="">4.6</td><td class="best">4.9<span class="bdg" aria-label="best in row">Best</span></td><td class="">4.1</td></tr><tr><th scope="row">Reviews</th><td class="me">118</td><td class="">5</td><td class="best">149<span class="bdg" aria-label="best in row">Best</span></td><td class="">57</td></tr><tr><th scope="row">Reviews, last 365 days</th><td class="me">21</td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td></tr><tr><th scope="row">Reviews, last 90 days</th><td class="me">4</td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td></tr><tr><th scope="row">Owner reply rate (newest 30)</th><td class="me">27 of 30 · median ~11 h</td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td></tr><tr><th scope="row">Photos</th><td class="me best">167<span class="bdg" aria-label="best in row">Best</span></td><td class="">1</td><td class="">128</td><td class="">29</td></tr><tr><th scope="row">Primary category</th><td class="me">Kitchen supply store</td><td class="">Store</td><td class="">Furniture maker</td><td class="">Kitchen supply store</td></tr><tr><th scope="row">Categories listed</th><td class="me">4</td><td class="">1</td><td class="best">9<span class="bdg" aria-label="best in row">Best</span></td><td class="">1</td></tr><tr><th scope="row">Listing claimed</th><td class="me">Yes</td><td class="">No (shows “Claim this business”)</td><td class="">Yes</td><td class="">Yes</td></tr><tr><th scope="row">Online booking link</th><td class="me">No</td><td class="">No</td><td class="">Yes (“Book online”)</td><td class="">No</td></tr><tr class="cg"><th scope="rowgroup" colspan="5">Maps visibility · 28 searches</th></tr><tr><th scope="row">In the top 3</th><td class="me best">9 of 28 · 32%<span class="bdg" aria-label="best in row">Best</span></td><td class="">7 of 28 · 25%</td><td class="">4 of 28 · 14%</td><td class="">4 of 28 · 14%</td></tr><tr><th scope="row">In the top 10</th><td class="me best">16 of 28 · 57%<span class="bdg" aria-label="best in row">Best</span></td><td class="">11 of 28 · 39%</td><td class="">7 of 28 · 25%</td><td class="">7 of 28 · 25%</td></tr><tr><th scope="row">Visibility score</th><td class="me best">117<span class="bdg" aria-label="best in row">Best</span></td><td class="">81</td><td class="">55</td><td class="">54</td></tr><tr><th scope="row">Searches where it leads the four</th><td class="me best">10<span class="bdg" aria-label="best in row">Best</span></td><td class="">4</td><td class="">4</td><td class="">2</td></tr><tr class="cg"><th scope="rowgroup" colspan="5">Website</th></tr><tr><th scope="row">Service pages</th><td class="me best">29<span class="bdg" aria-label="best in row">Best</span></td><td class="">4</td><td class="">5</td><td class="">5</td></tr><tr><th scope="row">Town / location pages</th><td class="me best">6 (all “Cork”)<span class="bdg" aria-label="best in row">Best</span></td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><th scope="row">LocalBusiness schema</th><td class="me">No</td><td class="">No</td><td class="">No</td><td class="">No</td></tr><tr><th scope="row">Name, address &amp; phone on site</th><td class="me">Yes</td><td class="">Yes</td><td class="">Yes</td><td class="">Yes</td></tr><tr><th scope="row">Guides / blog posts</th><td class="me best">16<span class="bdg" aria-label="best in row">Best</span></td><td class="">0</td><td class="">12</td><td class="">1</td></tr><tr class="cg"><th scope="rowgroup" colspan="5">Social · public signals, not traffic</th></tr><tr><th scope="row">Facebook page</th><td class="me">Linked from site</td><td class="">Linked from site</td><td class="">Linked from site</td><td class="">Linked from site</td></tr><tr><th scope="row">Instagram</th><td class="me">Linked from site</td><td class="">None found</td><td class="">Linked from site</td><td class="">Linked from site</td></tr><tr><th scope="row">Followers / likes</th><td class="me"><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td></tr><tr><th scope="row">Posts, last 90 days</th><td class="me"><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td><td class=""><span class="na">not collected (Apify credit)</span></td></tr></tbody></table></div>
+   <p class="ctnote">Green outline and “Best” mark the strongest value in each row (shared when tied). Your column is shaded. Social rows are public signals, not traffic. “Not collected (Apify credit)”: the data collection account hit its monthly limit before these could be gathered, so we haven't estimated them.</p>
+  </div>
+ </div>
+</div></header>
+
+<nav class="jump" aria-label="Sections"><div class="wrap">
+ <a href="#top">Comparison</a><a href="#picked">How we picked them</a><a href="#where">Who shows where</a><a href="#beat">Wins &amp; gaps</a><a href="#copy">What to copy</a><a href="#demand">Demand signals</a><a href="#social">Social</a><a href="#method">Method &amp; caveats</a>
+</div></nav>
+
+<main class="wrap">
+<section id="picked">
+ <h2>How we picked your top 3</h2>
+ <p>We scored every business that appeared in the 28 Google Maps searches (the top 20 results each time) by how high it ranked. A #1 earns 10 points, #2 earns 9, down to 1 point for #10; anything below #10 earns nothing. We left out your own listings (including the unrated “Drumm Carpentry Factory” pin), the unrelated Drumm Fencing &amp; Carpentry, and the far-away results Google mixed in from New York, Brooklyn and the UK.</p>
+ <p>The three highest-scoring local businesses all make or sell fitted kitchens or wardrobes, so they're the three we compare you with. Kitchen World Cork, which you might have expected, came 8th: it's #1 from Cork city but rarely shows up further north.</p>
+ <table class="lb"><thead><tr><th>#</th><th>Business</th><th>Score</th><th>Top 3</th><th>Top 10</th><th>Top 20</th></tr></thead><tbody><tr class="meb"><td data-l="#">–</td><td data-l="Business">Drumm (you, for reference)</td><td data-l="Score">117</td><td data-l="Top 3">9</td><td data-l="Top 10">16</td><td data-l="Top 20">17</td></tr><tr class="pick"><td data-l="#">1</td><td data-l="Business">Woodcraft Kitchens <span class="tag t-ok">Chosen</span></td><td data-l="Score">81</td><td data-l="Top 3">7</td><td data-l="Top 10">11</td><td data-l="Top 20">12</td></tr><tr class="pick"><td data-l="#">2</td><td data-l="Business">Sliding Door Wardrobes <span class="tag t-ok">Chosen</span></td><td data-l="Score">55</td><td data-l="Top 3">4</td><td data-l="Top 10">7</td><td data-l="Top 20">7</td></tr><tr class="pick"><td data-l="#">3</td><td data-l="Business">Crafted Fitted Furniture <span class="tag t-ok">Chosen</span></td><td data-l="Score">54</td><td data-l="Top 3">4</td><td data-l="Top 10">7</td><td data-l="Top 20">10</td></tr><tr class=""><td data-l="#">4</td><td data-l="Business">The Kitchen Centre</td><td data-l="Score">38</td><td data-l="Top 3">1</td><td data-l="Top 10">6</td><td data-l="Top 20">9</td></tr><tr class=""><td data-l="#">5</td><td data-l="Business">Barry &amp; Byrne Kitchens</td><td data-l="Score">37</td><td data-l="Top 3">2</td><td data-l="Top 10">5</td><td data-l="Top 20">9</td></tr><tr class=""><td data-l="#">6</td><td data-l="Business">James Twomey Fitted Furniture Ltd</td><td data-l="Score">30</td><td data-l="Top 3">1</td><td data-l="Top 10">5</td><td data-l="Top 20">12</td></tr><tr class=""><td data-l="#">7</td><td data-l="Business">Fermoy kitchens</td><td data-l="Score">29</td><td data-l="Top 3">3</td><td data-l="Top 10">3</td><td data-l="Top 20">6</td></tr><tr class=""><td data-l="#">8</td><td data-l="Business">Kitchen World Cork</td><td data-l="Score">29</td><td data-l="Top 3">2</td><td data-l="Top 10">4</td><td data-l="Top 20">6</td></tr><tr class=""><td data-l="#">9</td><td data-l="Business">Blackpool Kitchens and Bedrooms</td><td data-l="Score">27</td><td data-l="Top 3">2</td><td data-l="Top 10">7</td><td data-l="Top 20">9</td></tr><tr class=""><td data-l="#">10</td><td data-l="Business">Celtic Interiors</td><td data-l="Score">24</td><td data-l="Top 3">1</td><td data-l="Top 10">5</td><td data-l="Top 20">9</td></tr></tbody></table>
+ <p class="note">Score = sum of (11 − position) for every top-10 appearance across the 28 searches. Top 3 / Top 10 / Top 20 = number of searches (of 28) where the business appeared at that level.</p>
+</section>
+
+<section id="where">
+ <h2>Who shows where</h2>
+ <p>Each cell shows which of the four businesses ranks highest for that search from that town, and where you rank. Top 3 is what most people see without scrolling.</p>
+ <div class="glegend"><span><span class="sw" style="--c:#054672"></span>You lead</span><span><span class="sw" style="--c:#cdb083"></span>Woodcraft Kitchens leads</span><span><span class="sw" style="--c:#2f7d6d"></span>Sliding Door Wardrobes leads</span><span><span class="sw" style="--c:#8a4f7d"></span>Crafted Fitted Furniture leads</span><span><span class="sw" style="--c:#d8d2cd"></span>None of the 4 in the top 20</span></div>
+ <div class="gwrap"><table class="wgrid"><thead><tr><th scope="col">Searched from</th><th scope="col">fitted kitchens</th><th scope="col">fitted wardrobes</th><th scope="col">kitchen showroom</th><th scope="col">carpenter</th></tr></thead><tbody><tr><th scope="row">Mallow</th><td class="gc"><span class="lead" style="background:#8a4f7d;color:#fff">Crafted #1</span><span class="you ok">You #2</span><span class="sr">Drumm (you) #2; Woodcraft Kitchens #3; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture #1</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #1</span><span class="you ok">You #1</span><span class="sr">Drumm (you) #1; Woodcraft Kitchens #3; Sliding Door Wardrobes #6; Crafted Fitted Furniture #2</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #1</span><span class="you ok">You #1</span><span class="sr">Drumm (you) #1; Woodcraft Kitchens #2; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #2</span><span class="you ok">You #2</span><span class="sr">Drumm (you) #2; Woodcraft Kitchens #6; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td></tr><tr><th scope="row">Buttevant</th><td class="gc"><span class="lead" style="background:#cdb083;color:#151515">Woodcraft #1</span><span class="you ok">You #2</span><span class="sr">Drumm (you) #2; Woodcraft Kitchens #1; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture #3</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #1</span><span class="you ok">You #1</span><span class="sr">Drumm (you) #1; Woodcraft Kitchens #3; Sliding Door Wardrobes #2; Crafted Fitted Furniture #6</span></td><td class="gc"><span class="lead" style="background:#cdb083;color:#151515">Woodcraft #1</span><span class="you ok">You #2</span><span class="sr">Drumm (you) #2; Woodcraft Kitchens #1; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #5</span><span class="you">You #5</span><span class="sr">Drumm (you) #5; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td></tr><tr><th scope="row">Charleville</th><td class="gc"><span class="lead" style="background:#8a4f7d;color:#fff">Crafted #2</span><span class="you ok">You #3</span><span class="sr">Drumm (you) #3; Woodcraft Kitchens #6; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture #2</span></td><td class="gc"><span class="lead" style="background:#2f7d6d;color:#fff">Sliding Door #3</span><span class="you">You #6</span><span class="sr">Drumm (you) #6; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes #3; Crafted Fitted Furniture #17</span></td><td class="gc"><span class="lead none">None of the 4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #8</span><span class="you">You #8</span><span class="sr">Drumm (you) #8; Woodcraft Kitchens #17; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td></tr><tr><th scope="row">Kanturk</th><td class="gc"><span class="lead" style="background:#cdb083;color:#151515">Woodcraft #3</span><span class="you">You #5</span><span class="sr">Drumm (you) #5; Woodcraft Kitchens #3; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture #4</span></td><td class="gc"><span class="lead" style="background:#2f7d6d;color:#fff">Sliding Door #1</span><span class="you">You #5</span><span class="sr">Drumm (you) #5; Woodcraft Kitchens #4; Sliding Door Wardrobes #1; Crafted Fitted Furniture #11</span></td><td class="gc"><span class="lead" style="background:#cdb083;color:#151515">Woodcraft #8</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens #8; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #9</span><span class="you">You #9</span><span class="sr">Drumm (you) #9; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td></tr><tr><th scope="row">Fermoy</th><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #4</span><span class="you">You #4</span><span class="sr">Drumm (you) #4; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture #5</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #3</span><span class="you ok">You #3</span><span class="sr">Drumm (you) #3; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes #5; Crafted Fitted Furniture #12</span></td><td class="gc"><span class="lead none">None of the 4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead" style="background:#054672;color:#fff">You #20</span><span class="you">You #20</span><span class="sr">Drumm (you) #20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td></tr><tr><th scope="row">Blarney</th><td class="gc"><span class="lead none">None of the 4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead" style="background:#2f7d6d;color:#fff">Sliding Door #4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes #4; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead none">None of the 4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead none">None of the 4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td></tr><tr><th scope="row">Cork city</th><td class="gc"><span class="lead none">None of the 4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead" style="background:#2f7d6d;color:#fff">Sliding Door #1</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes #1; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead none">None of the 4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td><td class="gc"><span class="lead none">None of the 4</span><span class="you">You: not in top 20</span><span class="sr">Drumm (you) not in top 20; Woodcraft Kitchens not in top 20; Sliding Door Wardrobes not in top 20; Crafted Fitted Furniture not in top 20</span></td></tr></tbody></table></div>
+ <details class="more"><summary>All positions for the four businesses (28 searches)</summary><table class="ptab"><thead><tr><th>Town</th><th>Search</th><th>Drumm</th><th>Woodcraft</th><th>Sliding Door</th><th>Crafted</th><th>#1 overall in that search</th></tr></thead><tbody><tr><td data-l="Town">Mallow</td><td data-l="Search">fitted kitchens</td><td data-l="Drumm (you)">#2</td><td data-l="Woodcraft Kitchens">#3</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">#1</td><td data-l="#1 overall">Crafted Fitted Furniture</td></tr><tr><td data-l="Town">Mallow</td><td data-l="Search">fitted wardrobes</td><td data-l="Drumm (you)">#1</td><td data-l="Woodcraft Kitchens">#3</td><td data-l="Sliding Door Wardrobes">#6</td><td data-l="Crafted Fitted Furniture">#2</td><td data-l="#1 overall">Drumm Carpentry, Kitchens &amp; Wardrobes</td></tr><tr><td data-l="Town">Mallow</td><td data-l="Search">kitchen showroom</td><td data-l="Drumm (you)">#1</td><td data-l="Woodcraft Kitchens">#2</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Drumm Carpentry, Kitchens &amp; Wardrobes</td></tr><tr><td data-l="Town">Mallow</td><td data-l="Search">carpenter</td><td data-l="Drumm (you)">#2</td><td data-l="Woodcraft Kitchens">#6</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Mick Gibbons Carpentry Limited</td></tr><tr><td data-l="Town">Buttevant</td><td data-l="Search">fitted kitchens</td><td data-l="Drumm (you)">#2</td><td data-l="Woodcraft Kitchens">#1</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">#3</td><td data-l="#1 overall">Woodcraft Kitchens</td></tr><tr><td data-l="Town">Buttevant</td><td data-l="Search">fitted wardrobes</td><td data-l="Drumm (you)">#1</td><td data-l="Woodcraft Kitchens">#3</td><td data-l="Sliding Door Wardrobes">#2</td><td data-l="Crafted Fitted Furniture">#6</td><td data-l="#1 overall">Drumm Carpentry, Kitchens &amp; Wardrobes</td></tr><tr><td data-l="Town">Buttevant</td><td data-l="Search">kitchen showroom</td><td data-l="Drumm (you)">#2</td><td data-l="Woodcraft Kitchens">#1</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Woodcraft Kitchens</td></tr><tr><td data-l="Town">Buttevant</td><td data-l="Search">carpenter</td><td data-l="Drumm (you)">#5</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">TMMR Building &amp; Carpentry</td></tr><tr><td data-l="Town">Charleville</td><td data-l="Search">fitted kitchens</td><td data-l="Drumm (you)">#3</td><td data-l="Woodcraft Kitchens">#6</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">#2</td><td data-l="#1 overall">Seamus Reidy Custom Made Kitchens</td></tr><tr><td data-l="Town">Charleville</td><td data-l="Search">fitted wardrobes</td><td data-l="Drumm (you)">#6</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">#3</td><td data-l="Crafted Fitted Furniture">#17</td><td data-l="#1 overall">James Kilner Fitted Wardrobes &amp; Bedrooms Leeds</td></tr><tr><td data-l="Town">Charleville</td><td data-l="Search">kitchen showroom</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Reform Showroom Dumbo</td></tr><tr><td data-l="Town">Charleville</td><td data-l="Search">carpenter</td><td data-l="Drumm (you)">#8</td><td data-l="Woodcraft Kitchens">#17</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">TMMR Building &amp; Carpentry</td></tr><tr><td data-l="Town">Kanturk</td><td data-l="Search">fitted kitchens</td><td data-l="Drumm (you)">#5</td><td data-l="Woodcraft Kitchens">#3</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">#4</td><td data-l="#1 overall">Kanturk Fitted Furniture</td></tr><tr><td data-l="Town">Kanturk</td><td data-l="Search">fitted wardrobes</td><td data-l="Drumm (you)">#5</td><td data-l="Woodcraft Kitchens">#4</td><td data-l="Sliding Door Wardrobes">#1</td><td data-l="Crafted Fitted Furniture">#11</td><td data-l="#1 overall">Sliding Door Wardrobes</td></tr><tr><td data-l="Town">Kanturk</td><td data-l="Search">kitchen showroom</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">#8</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Reform Showroom Dumbo</td></tr><tr><td data-l="Town">Kanturk</td><td data-l="Search">carpenter</td><td data-l="Drumm (you)">#9</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Denis Cremin Carpentry &amp; Building</td></tr><tr><td data-l="Town">Fermoy</td><td data-l="Search">fitted kitchens</td><td data-l="Drumm (you)">#4</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">#5</td><td data-l="#1 overall">Fermoy kitchens</td></tr><tr><td data-l="Town">Fermoy</td><td data-l="Search">fitted wardrobes</td><td data-l="Drumm (you)">#3</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">#5</td><td data-l="Crafted Fitted Furniture">#12</td><td data-l="#1 overall">Fermoy kitchens</td></tr><tr><td data-l="Town">Fermoy</td><td data-l="Search">kitchen showroom</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Reform Showroom Dumbo</td></tr><tr><td data-l="Town">Fermoy</td><td data-l="Search">carpenter</td><td data-l="Drumm (you)">#20</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Don Pyne Carpentry &amp; Roofing Services</td></tr><tr><td data-l="Town">Blarney</td><td data-l="Search">fitted kitchens</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Barry &amp; Byrne Kitchens</td></tr><tr><td data-l="Town">Blarney</td><td data-l="Search">fitted wardrobes</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">#4</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Fusion Furniture bedroom wardrobes</td></tr><tr><td data-l="Town">Blarney</td><td data-l="Search">kitchen showroom</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Barry &amp; Byrne Kitchens</td></tr><tr><td data-l="Town">Blarney</td><td data-l="Search">carpenter</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Cutting Edge Carpentry &amp; Construction Ltd.</td></tr><tr><td data-l="Town">Cork city</td><td data-l="Search">fitted kitchens</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Kitchen World Cork</td></tr><tr><td data-l="Town">Cork city</td><td data-l="Search">fitted wardrobes</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">#1</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Sliding Door Wardrobes</td></tr><tr><td data-l="Town">Cork city</td><td data-l="Search">kitchen showroom</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">Kitchen World Cork</td></tr><tr><td data-l="Town">Cork city</td><td data-l="Search">carpenter</td><td data-l="Drumm (you)">–</td><td data-l="Woodcraft Kitchens">–</td><td data-l="Sliding Door Wardrobes">–</td><td data-l="Crafted Fitted Furniture">–</td><td data-l="#1 overall">NK Carpenter</td></tr></tbody></table><p class="note">“–” = not in the top 20. Positions count only Google's own results, with no ads flagged in any search. In Charleville, Kanturk and Fermoy the “kitchen showroom” searches mostly returned far-away US and UK showrooms, so local businesses had few slots.</p></details>
+</section>
+
+<section id="beat">
+ <h2>Where they beat you, and where you beat them</h2>
+ <div class="two">
+  <div class="card them"><h3>Where they beat you</h3><ul>
+   <li><b>Cork city and Blarney, for wardrobes.</b> Sliding Door Wardrobes (based in Togher) is #1 for “fitted wardrobes” from Cork city and from Kanturk, and #4 from Blarney. You're not in the top 20 for any of the 4 searches from Cork city or Blarney.</li>
+   <li><b>Kitchens around Buttevant and Kanturk.</b> Woodcraft Kitchens ranks above you in 5 searches: Buttevant “fitted kitchens” (#1 vs your #2) and “kitchen showroom” (#1 vs #2), and Kanturk “fitted kitchens” (#3 vs #5), “fitted wardrobes” (#4 vs #5) and “kitchen showroom” (#8, where you're not in the top 20). Its pin in Ballyclough is about 9 km from Buttevant and 12 km from Kanturk; yours is about 11 km and 19 km, so distance is the likely reason. It has 5 reviews and 1 photo.</li>
+   <li><b>“Fitted kitchens” in Mallow, Charleville and Kanturk.</b> Crafted Fitted Furniture ranks just above you: #1 vs your #2 in Mallow, #2 vs #3 in Charleville, #4 vs #5 in Kanturk. It uses the same main category as you (Kitchen supply store) and has a town-centre address on Bridge St, Mallow.</li>
+   <li><b>Google web search for Mallow.</b> On “fitted kitchens Mallow”, Crafted's contact page ranks #6 and Woodcraft shows up through its Golden Pages listing (#17). On “carpenter Mallow”, woodcraft-kitchens.com is #4. drummkitchens.ie isn't on the first 2 pages for either search.</li>
+   <li><b>More reviews and a fuller listing.</b> Sliding Door Wardrobes has 149 reviews (you have 118), 9 categories (you have 4), an online booking link and 6 accessibility details on its listing.</li>
+  </ul></div>
+  <div class="card us"><h3>Where you beat them</h3><ul>
+   <li><b>Most visible overall.</b> Your score is 117, against 81, 55 and 54. You're in the top 3 in 9 of the 28 searches (32%), against 7, 4 and 4, and you lead the four in 10 searches.</li>
+   <li><b>Mallow and Buttevant.</b> You're #1 for “fitted wardrobes” and “kitchen showroom” from Mallow, and #1 for “fitted wardrobes” from Buttevant. You're in the top 5 for all 8 searches from those two towns.</li>
+   <li><b>Carpenter searches.</b> You're in the top 20 for “carpenter” from 5 of the 7 towns. Woodcraft Kitchens is there from 2, and the other two from none.</li>
+   <li><b>Photos and rating.</b> 167 photos, against 128, 29 and 1. Your 4.9 rating is the joint highest, level with Sliding Door Wardrobes.</li>
+   <li><b>Website depth and Cork web search.</b> 29 service pages, against 4–5 for the others, and you're the only one with location-named pages (6 “Cork” pages). You rank #6 on Google web search for “fitted kitchens Cork” and “kitchen showroom Cork”, where none of the three shows up on the first 2 pages.</li>
+  </ul></div>
+ </div>
+</section>
+
+<section id="copy">
+ <h2>What to copy</h2>
+ <p>Specific things the three competitors do that you don't yet, each backed by what we found. Only add what's true for your business.</p>
+ <ol class="copy">
+  <li><h3>Add secondary categories that fit the work you do</h3><p>Sliding Door Wardrobes lists 9 categories, including Furniture maker, Kitchen furniture store and Furniture store, and it leads wardrobe searches from Cork city and Kanturk. You list 4. The businesses at #1 for several “carpenter” searches (for example in Kanturk) use the Carpenter category, which you don't have, even though you have a carpentry services page.</p><p class="ev">Evidence: competitor categories from their public Google listings; your categories from your listing, 10 Oct 2026. Categories are one of the main ways Google decides which searches a listing fits.</p></li>
+  <li><h3>Give Mallow its own page</h3><p>Crafted Fitted Furniture's contact page, which carries its Mallow address, ranks #6 on Google for “fitted kitchens Mallow”, and you're not on the first 2 pages. You have 6 pages aimed at “Cork” but none aimed at Mallow, your home town. Add a “Fitted kitchens &amp; wardrobes in Mallow” page with local projects, and mention nearby Buttevant, Kanturk and Charleville.</p><p class="ev">Evidence: Google web search results, Cork location, desktop, 10 Oct 2026; your sitemap.</p></li>
+  <li><h3>Add a booking link to your Google listing</h3><p>Sliding Door Wardrobes shows “Book online” on its listing, so people can book without phoning. A link to book a showroom visit or a design consultation does the same job.</p><p class="ev">Evidence: Sliding Door Wardrobes' public Google listing, 10 Oct 2026.</p></li>
+  <li><h3>Fill in accessibility and other listing details</h3><p>Sliding Door Wardrobes lists 6 accessibility details (car park, entrance, seating, toilet, hearing loop, assisted listening) and Crafted lists 2. Your listing shows delivery and payment options, but no accessibility details. If your showroom has an accessible entrance or car park, add it.</p><p class="ev">Evidence: “About” tab on each public listing; yours from the full listing data.</p></li>
+  <li><h3>Win more wardrobe jobs in Cork city and Blarney, and ask for reviews when you do</h3><p>Sliding Door Wardrobes, based in Togher, has the Cork city wardrobe searches. Being further away is hard to beat, but reviews and project pages that name Cork city areas help. Ask each Cork city and Blarney customer to review you, and add those jobs to your projects pages under the area name.</p><p class="ev">Evidence: Maps searches from Cork city and Blarney, where you weren't in the top 20 for any of the 4 searches.</p></li>
+  <li><h3>One easy win none of the four has: LocalBusiness schema</h3><p>None of the four websites tells Google its business type, address and hours in structured data (LocalBusiness schema). You already have Organization and FAQ schema, so adding LocalBusiness with your Mallow address and hours is a small job, and it would put you ahead of all three.</p><p class="ev">Evidence: structured data found on each site's crawled pages, 10 Oct 2026.</p></li>
+ </ol>
+</section>
+
+<section id="demand">
+ <h2>Demand signals</h2>
+ <p class="proxy"><b>These aren't visitor numbers.</b> They're public signals that usually move with how many customers find you. Small local websites don't have public traffic data, so we haven't guessed any.</p>
+ <div class="dgrid"><div class="dbar"><div class="dbh">Maps top-3 share (of 28 searches)</div><div class="dr"><span class="dn">Drumm</span><span class="bar"><span style="width:32.1%;background:#054672"></span></span><span class="dv">32%</span></div><div class="dr"><span class="dn">Woodcraft</span><span class="bar"><span style="width:25.0%;background:#cdb083"></span></span><span class="dv">25%</span></div><div class="dr"><span class="dn">Sliding Door</span><span class="bar"><span style="width:14.3%;background:#2f7d6d"></span></span><span class="dv">14%</span></div><div class="dr"><span class="dn">Crafted</span><span class="bar"><span style="width:14.3%;background:#8a4f7d"></span></span><span class="dv">14%</span></div></div><div class="dbar"><div class="dbh">Maps top-10 share (of 28 searches)</div><div class="dr"><span class="dn">Drumm</span><span class="bar"><span style="width:57.1%;background:#054672"></span></span><span class="dv">57%</span></div><div class="dr"><span class="dn">Woodcraft</span><span class="bar"><span style="width:39.3%;background:#cdb083"></span></span><span class="dv">39%</span></div><div class="dr"><span class="dn">Sliding Door</span><span class="bar"><span style="width:25.0%;background:#2f7d6d"></span></span><span class="dv">25%</span></div><div class="dr"><span class="dn">Crafted</span><span class="bar"><span style="width:25.0%;background:#8a4f7d"></span></span><span class="dv">25%</span></div></div><div class="dbar"><div class="dbh">Photos on the listing</div><div class="dr"><span class="dn">Drumm</span><span class="bar"><span style="width:100.0%;background:#054672"></span></span><span class="dv">167</span></div><div class="dr"><span class="dn">Woodcraft</span><span class="bar"><span style="width:1.0%;background:#cdb083"></span></span><span class="dv">1</span></div><div class="dr"><span class="dn">Sliding Door</span><span class="bar"><span style="width:76.6%;background:#2f7d6d"></span></span><span class="dv">128</span></div><div class="dr"><span class="dn">Crafted</span><span class="bar"><span style="width:17.4%;background:#8a4f7d"></span></span><span class="dv">29</span></div></div></div>
+ <div class="callout vel"><h3>Review velocity (new reviews, as a rough proxy for jobs won)</h3>
+  <p><b>You:</b> 21 new reviews in the last 365 days and 4 in the last 90 days, out of 118 in total.</p>
+  <p><b>Woodcraft Kitchens, Sliding Door Wardrobes, Crafted Fitted Furniture:</b> <span class="na">not collected (Apify credit)</span>. We have their total review counts (5, 149 and 57), but not the dates of their reviews, so we can't say how many are recent.</p>
+  <p><b>Website traffic estimates (Similarweb):</b> <span class="na">not collected (Apify credit)</span>. Even when they can be collected, sites this size usually return “not enough data”.</p>
+ </div>
+ <div class="callout rgn" id="google-numbers"><h3>Your real Google numbers</h3>
+  <p>Your Business Profile shows how many people actually called you, asked for directions or clicked through to your website from Google. These are the real numbers that the signals above can only hint at. Add them here to track progress.</p>
+  <div class="empty" aria-label="Empty placeholders, to be filled in by the owner">
+   <div><div class="v">—</div><div class="l">Calls from your profile</div></div>
+   <div><div class="v">—</div><div class="l">Direction requests</div></div>
+   <div><div class="v">—</div><div class="l">Website clicks</div></div>
+  </div>
+  <p class="note">Where to find them: search “Drumm Carpentry” on Google while signed in to the account that manages the listing, choose <b>Performance</b>, and set the date range (for example, the last 6 months). Competitors' numbers are private and can't be compared.</p>
+ </div>
+</section>
+
+<section id="social">
+ <h2>Social presence</h2>
+ <p class="proxy"><b>Public signals, not traffic.</b> Followers and posting frequency show activity, not how many customers a page sends you.</p>
+ <table class="soc"><thead><tr><th>Business</th><th>Facebook</th><th>Instagram</th><th>Other linked profiles</th><th>Followers, posts (90 days), latest post, engagement</th></tr></thead><tbody>
+  <tr><td data-l="Business"><b>Drumm (you)</b></td><td data-l="Facebook"><a href="https://www.facebook.com/drummcarpentrykitchensandwardrobes/" rel="noopener nofollow" target="_blank">drummcarpentrykitchensandwardrobes</a></td><td data-l="Instagram"><a href="https://www.instagram.com/drummkitchensandwardrobes/" rel="noopener nofollow" target="_blank">@drummkitchensandwardrobes</a></td><td data-l="Other">Houzz; LinkedIn (a personal profile, not a company page)</td><td data-l="Metrics"><span class="na">not collected (Apify credit)</span></td></tr>
+  <tr><td data-l="Business"><b>Woodcraft Kitchens</b></td><td data-l="Facebook"><a href="https://www.facebook.com/pages/Woodcraft-Kitchens/614300941939501" rel="noopener nofollow" target="_blank">Woodcraft Kitchens page</a></td><td data-l="Instagram">None linked or found</td><td data-l="Other">None</td><td data-l="Metrics"><span class="na">not collected (Apify credit)</span></td></tr>
+  <tr><td data-l="Business"><b>Sliding Door Wardrobes</b></td><td data-l="Facebook"><a href="https://www.facebook.com/SlidingDoorWardrobe" rel="noopener nofollow" target="_blank">SlidingDoorWardrobe</a></td><td data-l="Instagram"><a href="https://www.instagram.com/sliding_door_wardrobes/" rel="noopener nofollow" target="_blank">@sliding_door_wardrobes</a></td><td data-l="Other">Pinterest</td><td data-l="Metrics"><span class="na">not collected (Apify credit)</span></td></tr>
+  <tr><td data-l="Business"><b>Crafted Fitted Furniture</b></td><td data-l="Facebook"><a href="https://www.facebook.com/cffkitchengroup" rel="noopener nofollow" target="_blank">cffkitchengroup</a></td><td data-l="Instagram"><a href="https://www.instagram.com/cff_kitchen_group" rel="noopener nofollow" target="_blank">@cff_kitchen_group</a></td><td data-l="Other">None</td><td data-l="Metrics"><span class="na">not collected (Apify credit)</span></td></tr>
+ </tbody></table>
+ <p class="note">All profiles above are linked from each business's own website. For Woodcraft Kitchens we also searched by name and town and found no Instagram account we could match with confidence. None of the four websites links to TikTok. Follower counts, post counts, latest post dates and engagement need the data collection account to be topped up; nothing here is estimated.</p>
+</section>
+
+<section id="method">
+ <h2>Method and caveats</h2>
+ <ul class="plain">
+  <li><b>When and how:</b> data from 10 Oct 2026. Google Maps rankings (28 searches), Google web search results (6 searches, Cork location, desktop) and your full listing came from Apify. Competitor listings were checked by hand on Google Maps while signed out, and all four websites were crawled lightly (up to 30 pages each, plus each site's sitemap).</li>
+  <li><b>Maps results depend on where the searcher is.</b> Each search was run from the centre of one town, zoomed to about 13 km. Someone searching from a different street, or on a phone with location turned on, can see a different order.</li>
+  <li><b>Proxies aren't traffic.</b> Rankings, review counts, photos and social figures are public signals. They usually move with demand, but they aren't calls, visits or sales.</li>
+  <li><b>Signed-out view:</b> Google currently shows a “limited view” of Maps when you're signed out. It hides review lists, so competitors' review dates, reply rates and star breakdowns couldn't be read by hand. Rating, categories, photos, attributes, phone, website and hours were visible.</li>
+  <li><b>Website measures:</b> “service pages” are pages about a product or service (not projects, blog, legal or contact pages), counted from each sitemap. “Town / location pages” have a place name in the address. “LocalBusiness schema” means LocalBusiness or a subtype in the page's structured data.</li>
+  <li><b>Small samples:</b> one snapshot on one day. Rankings move from day to day, so treat differences of one or two places as noise.</li>
+ </ul>
+ <h3 class="sub">Not available in this version</h3>
+ <ul class="plain">
+  <li>Competitors' reviews in the last 90 and 365 days, owner reply rates, reply times and star breakdowns: not collected (Apify credit).</li>
+  <li>Facebook and Instagram followers, posts in the last 90 days, latest post dates and engagement, for all four businesses: not collected (Apify credit).</li>
+  <li>Website traffic estimates (Similarweb): not collected (Apify credit).</li>
+  <li>Google posts and Q&amp;A for the competitors: not available in the signed-out view.</li>
+  <li>Calls, direction requests and website clicks: private to each business (see “Your real Google numbers”).</li>
+ </ul>
+</section>
+</main>
+
+<footer><div class="wrap">Data from Google Maps and Google Search, checked 10 Oct 2026 via Apify and manual checks. Maps rankings collected from the centres of Mallow, Buttevant, Charleville, Kanturk, Fermoy, Blarney and Cork city. Competitor details come from their public Google listings and websites. Competitor information is shown for comparison only and is described as found.<div class="credit"><img src="assets/drumreach-icon.png" alt="" width="18" height="18"><span>Prepared by Drumreach · <a href="https://drumreach.com" target="_blank" rel="noopener">drumreach.com</a></span></div></div></footer>
+</body>
+</html>
